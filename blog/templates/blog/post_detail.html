@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% load static%}
+{% block content %}
+    <h1 class="home-page-heading">{{ object.title }}</h1>
+    <p class="article-author"> <img src="{{ object.author.profile.image.url }}" alt="dp" class="article-img"> {{ object.author }} on {{ object.date_posted|date:"F d, Y" }}</p>
+    <p class="article-content"> {{ object.content }} </p>
+    {% if object.author == user %}
+        <a href="{% url 'post-update' object.id %}">Update</a>
+        <a href="{% url 'post-delete' object.id %}">Delete</a>
+    {% endif %}
+{% endblock content %}
